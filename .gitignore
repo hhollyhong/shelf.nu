@@ -18,6 +18,7 @@ yarn.lock
 .env.production
 .env.*.backup
 .env.production-backup
+docker.env
 
 .cache
 
