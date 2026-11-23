@@ -1,0 +1,16 @@
+services:
+  shelf:
+    image: ghcr.io/shelf-nu/shelf.nu:latest   # pin to a version tag once it works
+    container_name: shelf
+    env_file: docker.env
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    restart: unless-stopped
+    depends_on:
+      - shelf
